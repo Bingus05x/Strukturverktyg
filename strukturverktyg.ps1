@@ -1,11 +1,10 @@
 # Nazar Falah 
 # YH24
 
-$namn = Read-Host "Ange namn för system/miljö"
-Strukturverktyg -namn $namn
+
 
 function strukturverktyg {
-    param ($namn)
+    param ([string]$namn)
     
     $datum = Get-Date -Format "yyyy-MM-dd"
     $tid = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
@@ -23,28 +22,20 @@ function strukturverktyg {
         foreach ($mapp in $undermappar) {
             New-Item -Path "$huvudmapp\$mapp" -ItemType Directory 
         }
-        
+
+        # Skapa loggfil i logs/
+        $loggFil = "$huvudmapp\logs\log-$datum.txt"
+        "Struktur skapad: $tid" | Out-File -FilePath $loggFil -Encoding UTF8
+
+        Write-Host "Struktur för '$namn' skapad utan problem."
         
     }
     catch {
         Write-Host "Fel: $_"
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
 }
+
+$namn = Read-Host "Ange namn för kundsystem"
+Strukturverktyg -namn $namn
