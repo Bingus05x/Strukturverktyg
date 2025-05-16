@@ -17,6 +17,14 @@ function strukturverktyg {
         }
 
         New-Item -Path $huvudmapp -ItemType Directory
+
+        # Skapa undermappar
+        $undermappar = @("logs", "scripts", "temp")
+        foreach ($mapp in $undermappar) {
+            New-Item -Path "$huvudmapp\$mapp" -ItemType Directory 
+        }
+        
+        
     }
     catch {
         Write-Host "Fel: $_"
