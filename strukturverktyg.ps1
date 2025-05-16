@@ -32,7 +32,7 @@ function strukturverktyg {
 
         # En loggfil genererades med datum i filnamnet i logs/
         $loggFil = "$huvudmapp\logs\log-$datum.txt"
-        
+
         # Skriptet skrev in datum och tid i loggfilen
         "Struktur skapad: $tid" | Out-File -FilePath $loggFil -Encoding UTF8
 
@@ -41,6 +41,7 @@ function strukturverktyg {
         
     }
     catch {
+        # Felmeddelandet visas
         Write-Host "Fel: $_"
     }
     
